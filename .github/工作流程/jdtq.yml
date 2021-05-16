@@ -1,0 +1,29 @@
+名称：简单天气
+上：
+  工作流程调度：
+  日程：
+    -cron：“ * / 45 * * * *”
+  手表：
+    类型：开始
+职位：
+  建造：
+    运行：ubuntu-latest
+    如果：github.event.repository.owner.id == github.event.sender.id
+
+    脚步：
+      -名称：结帐
+        用途：actions / checkout @ v1
+        
+      -名称：使用Node.js 12.x
+        用途：actions / setup-node @ v1
+        和：
+          节点版本：12.x
+      -名称：npm install
+        运行：
+          npm安装
+      -名称：“运行【简单天气】“
+        运行：
+          节点jdtq.js
+        环境：
+          TG_BOT_TOKEN：$ {{secrets.TG_BOT_TOKEN}}
+          TG_USER_ID：$ {{secrets.TG_USER_ID}}
